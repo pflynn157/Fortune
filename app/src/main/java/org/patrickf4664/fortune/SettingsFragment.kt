@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 
 import org.patrickf4664.fortune.alarm.AlarmManager
+import java.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -50,6 +51,20 @@ class SettingsFragment : Fragment() {
         view.findViewById<Button>(R.id.set_time_btn).setOnClickListener {
             setTime()
         }
+
+        val calender = Calendar.getInstance().time
+        var hour = calender.hours
+        val min = calender.minutes
+        var amPm = "AM"
+
+        if (hour > 12) {
+            hour -= 12
+            amPm = "PM"
+        }
+
+        hourEntry.setText(hour.toString())
+        minEntry.setText(min.toString())
+        amPmEntry.setText(amPm)
     }
 
     private fun setTime() {
